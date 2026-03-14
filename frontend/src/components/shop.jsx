@@ -11,7 +11,7 @@ function Shop() {
     useEffect(()=>{
         const fetchArt=async()=>{
             try{
-                const response= await axios.get("http://localhost:5000/api/art")
+                const response= await axios.get(`${import.meta.env.VITE_API_URL}/api/art`)
                 setArtworks(response.data)
             }catch(error){
                 console.log('Error fetching data:',error)
