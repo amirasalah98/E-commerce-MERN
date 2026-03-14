@@ -1,8 +1,0 @@
-.navbar,div,span,button {
-  background: var(--bg) !important;
-  color: var(--text) !important;
-}
-
-.navbar a ,div,span,button{
-  color: var(--text) !important;
-}

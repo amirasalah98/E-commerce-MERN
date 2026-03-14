@@ -4,9 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter} from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
+import { CartProvider } from './cartContext.jsx';
 
 createRoot(document.getElementById('root')).render(
+  <CartProvider>
   <BrowserRouter>
     <App />
   </BrowserRouter>
+  </CartProvider>
 )

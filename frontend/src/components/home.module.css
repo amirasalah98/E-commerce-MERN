@@ -1,0 +1,65 @@
+.containerLight p, .containerLight li{
+    color: #7a7a73;
+}
+.containerDark p, .containerDark li{
+    color: #faf7de;
+}
+span{
+    display: block;
+}
+img{
+    border-radius: 20px;
+}
+div{
+    text-align: left;
+}
+
+.containerLight .aboutCardsCard, .containerLight .homeCardsCard,.containerLight .shopCardsCard, .containerLight .contactCardsCard{
+    border-radius: 20px;
+    border: 1px solid #7a7a7333;
+    background-color: rgb(255, 253, 240)!important;
+    transition: .3s;
+}
+.containerDark .aboutCardsCard, .containerDark .homeCardsCard, .containerDark .shopCardsCard, .containerDark .contactCardsCard{
+    border-radius: 20px;
+    border: 1px solid #7a7a7333;
+    background-color: #a39f9369!important;
+    transition: .3s;
+    color: #faf7de;
+}
+.homeCardsCard{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
+}
+.aboutCardsCard:hover, .contactCardsCard:hover{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.halfParagraph{
+    width: 45%;
+}
+.containerLight button{
+background-color: rgb(255, 253, 240);
+color: #7A7A73;
+border: 1px solid #7A7A73;
+}
+.gradientBtn,button{
+border-radius: 20px;
+border-right: none;
+}
+.containerLight .gradientBtn{
+    color: #faf7de;
+    border: none;
+  background: #7A7A73;
+background: linear-gradient(90deg, rgba(122, 122, 115, 1) 0%, rgba(163, 159, 147, 1) 50%);
+}
+.containerDark .gradientBtn{
+     color: #faf7de;
+  background: #7A7A73;
+  background: linear-gradient(90deg,rgba(163, 159, 147, 1) 0%, rgba(122, 122, 115, 1) 50%);
+
+}
+@media (max-width: 768px){
+    .halfParagraph,.halfWidthImg{
+    width: 100%;
+}
+}

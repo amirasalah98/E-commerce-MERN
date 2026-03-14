@@ -3,19 +3,22 @@
   text-align: center;
   width: 100%;
 }
-.light {
+/* .light {
   --bg: #faf7de;
   --text: #4e4c45;
+} */
+div{
+  height: unset!important;
+  margin: unset;
 }
-
-.dark {
+/* .dark {
   --bg: #4e4c45;
-  --text: white;
+  --text: #faf7de;
 }
 body, #root, div {
   background: var(--bg);
   color: var(--text);
-}
+} */
 .logo {
   height: 6em;
   padding: 1.5em;

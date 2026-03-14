@@ -1,0 +1,89 @@
+.containerLight p, .containerLight li{
+    color: #7a7a73;
+}
+.containerDark p, .containerDark li{
+    color: #faf7de;
+}
+.containerLight .cartBox, .containerLight .totalBox{
+    background-color: #ffffffb6;
+     border-radius: 20px;
+    border: 1px solid #7a7a7333;
+    
+}
+.containerDark .cartBox, .containerDark .totalBox{
+    background-color: #a39f9369!important;
+    border-radius: 20px;
+    color: #faf7de;
+    
+}
+.containerLight button{
+background-color: rgb(255, 253, 240);
+color: #7A7A73;
+border: 1px solid #7A7A73;
+}
+.quantityBox input, .quantityBox button{
+    background-color: #faf7de;
+    border-radius: 20px;
+    border: 1px solid #7a7a7333;
+}
+.quantityBox button{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+.quantityBox input{
+    width: 40px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #e8e6cf;
+}
+.btnX{
+    background-color: transparent;
+    width: 20px;
+    height: 30px;
+    font-size: 14px;
+      display: flex;
+    justify-content: center;
+    align-items: center;   
+     border-radius: 5px;
+
+}
+.containerDark .btnX{
+    color: #fff;
+    border:1px solid #fff;
+}
+.btnX:hover{
+    border: 1px solid #7a7a73;
+    background-color: #7a7a73;
+    transition: .2s;
+    color: #fff;
+}
+.gradientBtn,button{
+border-radius: 20px;
+border-right: none;
+}
+.containerLight .gradientBtn{
+    color: #faf7de;
+    border: none;
+  background: #7A7A73;
+background: linear-gradient(90deg, rgba(122, 122, 115, 1) 0%, rgba(163, 159, 147, 1) 50%);
+}
+.containerDark .gradientBtn{
+     color: #faf7de;
+  background: #7A7A73;
+  background: linear-gradient(90deg,rgba(163, 159, 147, 1) 0%, rgba(122, 122, 115, 1) 50%);
+
+}
+
+@media (max-width: 768px){
+    .totalBox,.cartsBox{
+    width: 100%!important;
+}
+}
