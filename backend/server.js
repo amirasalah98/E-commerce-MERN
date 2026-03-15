@@ -6,7 +6,9 @@ const cors = require("cors");
 
 const app= express()
 const PORT = process.env.PORT || 5000;
-app.use(cors());
+app.use(cors({
+  origin: "https://artisty-mern.netlify.app"
+}));
 const artRoutes =require('./routes/art')
 const authRoutes = require('./routes/auth');
 const orderRoutes = require('./routes/orders');
