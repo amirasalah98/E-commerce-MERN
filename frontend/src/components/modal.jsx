@@ -5,7 +5,7 @@ import style from './style.module.css'
 function Modal({ children }){
     const {darkMode}=useContext(DarkModeContext)
 return(
-<div style={{height: '100vh',display: 'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}} className={darkMode? style.containerDark:style.containerLight} >
+<div style={{height: '100vh',display: 'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',paddingBottom:'25%'}} className={darkMode? style.containerDark:style.containerLight} >
     {children}
 </div>
 )

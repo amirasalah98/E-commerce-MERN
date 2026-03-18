@@ -1,6 +1,7 @@
 import style from './home.module.css'
 import React,{ useContext } from "react";
 import { DarkModeContext } from "../DarkModeContext";
+import { BsEnvelope,BsFacebook,BsInstagram   } from "react-icons/bs";
 function Contact() {
         const {darkMode}=useContext(DarkModeContext)
     
@@ -14,15 +15,15 @@ I'd love to hear from you! Whether you have questions about my work,
             </div>
          <div className={`text-center p-4 ${style.contactCardsCard}`}>
             <div>
-            <h5>Email</h5>
+            <h5><BsEnvelope /> Email</h5>
             <span>amira.salahh9@gmail.com</span>
             </div>
             <div>
-            <h5>Facebook</h5>
+            <h5><BsFacebook /> Facebook</h5>
             <span><a href="#">Amira's Facebook</a></span>
             </div>
             <div>
-            <h5>Instagram</h5>
+            <h5><BsInstagram /> Instagram</h5>
             <span><a href="#">Amira's Instagram</a></span>
             </div>
          </div>

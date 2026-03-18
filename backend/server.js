@@ -16,6 +16,9 @@ app.use(express.json())
 app.use('/api/art',artRoutes)
 app.use('/api/auth', authRoutes);
 app.use('/api', orderRoutes);
+app.get("/api/health", (req, res) => {
+  res.status(200).send("OK");
+});
 async function startServer() {
     try{
         await mongoose.connect(process.env.mongoURI)
