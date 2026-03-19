@@ -8,11 +8,18 @@ try {
     await newOrder.save();
 
 const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
+      // service: "gmail",
+      // auth: {
+      //   user: process.env.EMAIL_USER,
+      //   pass: process.env.EMAIL_PASS
+      // }
+      host: process.env.EMAIL_HOST,
+  port: parseInt(process.env.EMAIL_PORT), // 587
+  secure: false, // true if port 465
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
     });
     const mailOptions = {
       from: process.env.EMAIL_USER,
