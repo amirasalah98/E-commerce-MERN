@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const SibApiV3Sdk = require("sib-api-v3-sdk");
 
 const orderSchema = new mongoose.Schema({
   customer: {
@@ -16,15 +17,19 @@ const orderSchema = new mongoose.Schema({
       quantity: Number
     }
   ],
-  
+
 }, { timestamps: true });
 orderSchema.post("save", async function (doc) {
   try {
-    if (!this.isNew) return;
+    // if (!this.isNew) return;
 
     const customerName = doc.customer?.name || "Customer";
     const customerEmail = doc.customer?.email;
 
+      const totalPrice = doc.items.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
     // 🔹 Setup Brevo
     const client = SibApiV3Sdk.ApiClient.instance;
     const apiKey = client.authentications["api-key"];
@@ -51,7 +56,7 @@ Email: ${customerEmail}
 Items:
 ${itemsList}
 
-Total: ${doc.totalPrice}
+Total: ${totalPrice}
 Order ID: ${doc._id}
       `
     }).catch(console.error);
