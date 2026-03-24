@@ -16,10 +16,7 @@ const orderSchema = new mongoose.Schema({
       quantity: Number
     }
   ],
-  totalPrice: {
-    type: Number,
-    required: true
-  }
+  
 }, { timestamps: true });
 orderSchema.post("save", async function (doc) {
   try {
