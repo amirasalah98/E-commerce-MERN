@@ -47,6 +47,7 @@ orderSchema.post("save", async function (doc) {
       sender: { email: process.env.EMAIL_USER },
       to: [{ email: process.env.ADMIN_EMAIL, name: "Admin" }],
       subject: "New Order Received",
+      
       textContent: `
 New Order 🚀
 

@@ -3,33 +3,39 @@ import axios from 'axios';
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import style from './style.module.css'
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const signin=({setLoggedInUser})=>{
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: ''
-    });
-     const [message, setMessage] = useState('');
-
-    const { username, password, email } = formData;
-    const onChange= e=> {
-        setFormData({...formData, [e.target.name]:e.target.value})
-
-    }
-    const onSubmit = async e =>{
-        e.preventDefault()
-        try{
-            const res= await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`,{email,password})
+    const [message, setMessage] = useState('');
+    const validationSchema = Yup.object({
+        email:Yup.string().email("Invalid email format").required("Email is required"),
+        password: Yup.string().min(6,"Password must be at least 6 characters").required("Password is required")
+    })
+    const formik= useFormik({
+        initialValues:{
+            email:"",
+            password:""
+        },
+        validationSchema,
+        onSubmit:async(values,{setSubmitting})=>{
+            try{
+const res= await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`,values)
             localStorage.setItem('token', res.data.token);
             // setLoggedInUser(email);
 
             setMessage('Logged in successfully')
-        }catch(err){
-            console.error(err.response?.data || err.message)
+            }catch{
+console.error(err.response?.data || err.message)
             setMessage('Failed to login - wrong credentials')
+            }
+            setSubmitting(false);
         }
-    }
+    })
+    
+     
+
+    
     return (
  <div className="auth-form">
             <h2>Login</h2>
@@ -48,16 +54,20 @@ const signin=({setLoggedInUser})=>{
                        required />
                 <button type="submit">Login</button>
             </form> */}
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={formik.handleSubmit}>
                     <Form.Group className="mb-3">
                       <Form.Label>Email address</Form.Label>
                       <Form.Control
                         type="email"
                         placeholder="Enter email"
                         name="email"
-                        value={email}
-                        onChange={onChange}
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
+                       {formik.touched.email && formik.errors.email && (
+    <p style={{ color: "red" }}>{formik.errors.email}</p>
+  )}
                     </Form.Group>
             
                     <Form.Group className="mb-3">
@@ -66,13 +76,17 @@ const signin=({setLoggedInUser})=>{
                         type="password"
                         placeholder="Password"
                         name="password"
-                        value={password}
-                        onChange={onChange}
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
+                       {formik.touched.password && formik.errors.password && (
+    <p style={{ color: "red" }}>{formik.errors.password}</p>
+  )}
                     </Form.Group>
             
-                    <Button variant="primary" type="submit">
-                      Sign In
+                    <Button variant="primary" type="submit" disabled={formik.isSubmitting}>
+                      {formik.isSubmitting ? "Loading..." : "Sign In"}
                     </Button>
                   </Form>
             <p className="message">{message}</p>

@@ -38,10 +38,24 @@
 //   }
 // };
 const Order = require("../models/Order");
+const { validationResult } = require('express-validator');
 
 exports.postOrder = async (req, res) => {
+  const { name, email, phone, city, address } = req.body;
+  const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
   try {
-    const newOrder = new Order(req.body);
+    const newOrder = new Order({
+  customer: {
+    name,
+    email
+  },
+  phone,
+  city,
+  address
+});
     await newOrder.save();
 
     res.status(201).json({ message: "Order created" });

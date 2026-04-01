@@ -1,72 +1,88 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
-
+import { useFormik } from "formik";
+import * as Yup from "yup";
+// done but existed email didn't appear error msg
 const Signup = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: ""
-  });
-
   const [message, setMessage] = useState("");
 
-  const { username, password, email } = formData;
+  const validationSchema = Yup.object({
+    username: Yup.string().required("Username is required"),
+    email: Yup.string().email("Invalid email format").required("Email is required"),
+    password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required")
+  });
 
-  const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      email: "",
+      password: ""
+    },
+    validationSchema,
+    onSubmit: async (values, { setSubmitting, setFieldError, resetForm }) => {
+      try {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/signup`, values, {
+          headers: { "Content-Type": "application/json" }
+        });
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+        // Save token
+        localStorage.setItem("token", response.data.token);
 
-    try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/signup`, {
-        username,
-        email,
-        password
-      });
+        setMessage(response.data.message);
+        resetForm();
+      } catch (err) {
+  const data = err.response?.data;
 
-      setMessage("Registered successfully");
-
-      setFormData({
-        username: "",
-        email: "",
-        password: ""
-      });
-
-    } catch (err) {
-      console.error(err.response?.data || err.message);
-      setMessage("Failed to register, user already exists");
+  if (data?.type === "email") {
+    // specific error for existing email
+    setFieldError("email", data.message);
+    formik.setFieldTouched("email", true);
+  } else if (data?.message) {
+    setMessage(data.message);
+  } else {
+    setMessage("Something went wrong");
+  }
+}finally {
+        setSubmitting(false);
+      }
     }
-  };
+  });
 
   return (
     <div className="auth-form">
       <h2>Signup</h2>
-      <p className="message">{message}</p>
+      {message && <p className="message">{message}</p>}
 
-      <Form onSubmit={onSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            name="email"
-            value={email}
-            onChange={onChange}
-          />
-        </Form.Group>
-
+      <Form onSubmit={formik.handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter your name"
             name="username"
-            value={username}
-            onChange={onChange}
+            value={formik.values.username}
+            onChange={(e) => { formik.handleChange(e); setMessage(""); }}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched.username && formik.errors.username && (
+            <p style={{ color: "red" }}>{formik.errors.username}</p>
+          )}
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            name="email"
+            value={formik.values.email}
+            onChange={(e) => { formik.handleChange(e); setMessage(""); }}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.email && formik.errors.email && (
+            <p style={{ color: "red" }}>{formik.errors.email}</p>
+          )}
         </Form.Group>
 
         <Form.Group className="mb-3">
@@ -75,13 +91,17 @@ const Signup = () => {
             type="password"
             placeholder="Password"
             name="password"
-            value={password}
-            onChange={onChange}
+            value={formik.values.password}
+            onChange={(e) => { formik.handleChange(e); setMessage(""); }}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched.password && formik.errors.password && (
+            <p style={{ color: "red" }}>{formik.errors.password}</p>
+          )}
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Sign Up
+        <Button variant="primary" type="submit" disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? "Loading..." : "Sign Up"}
         </Button>
       </Form>
     </div>
