@@ -58,6 +58,19 @@ background: linear-gradient(90deg, rgba(122, 122, 115, 1) 0%, rgba(163, 159, 147
   background: linear-gradient(90deg,rgba(163, 159, 147, 1) 0%, rgba(122, 122, 115, 1) 50%);
 
 }
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #eee;
+  border-top: 6px solid #ff6f91; /* match your theme */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 @media (max-width: 768px){
     .halfParagraph,.halfWidthImg{
     width: 100%;

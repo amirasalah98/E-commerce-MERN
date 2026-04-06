@@ -8,13 +8,19 @@ function Shop() {
     const [artworks,setArtworks]=useState([])
     const {darkMode}=useContext(DarkModeContext)
     const { addToCart } = useContext(CartContext);
+    const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
     useEffect(()=>{
         const fetchArt=async()=>{
             try{
-                const response= await axios.get(`${import.meta.env.VITE_API_URL}/api/art`)
+                setLoading(true);
+                const response= await axios.get(`${import.meta.env.VITE_API_URL}/api/art`,{ withCredentials: true })
                 setArtworks(response.data)
             }catch(error){
+                setError("Failed to fetch products");
                 console.log('Error fetching data:',error)
+            }finally{
+                setLoading(false);
             }
         }
         fetchArt()
@@ -22,6 +28,7 @@ function Shop() {
     return(
 
         <div className={`py-5 container ${darkMode? style.containerDark:style.containerLight} `}>
+        
             <div className='pb-5'>
                         <span>Welcome to my enchanted world</span>
                         <h2>Where dreamy <i>landscapes bloom</i></h2>
@@ -38,8 +45,12 @@ function Shop() {
                     </div>
                     {/* filter + gallery items  */}
                                         <div className='container d-flex flex-wrap flex-column flex-md-row justify-content-center'>
-
-                    {artworks.map((art) => (
+{loading ? (
+  <div className="w-100 d-flex justify-content-center align-items-center" style={{ minHeight: "200px" }}>
+    <div className={style.spinner}></div>
+  </div>
+) : (
+                    artworks.map((art) => (
         <div key={art._id} className={`col-md-3 text-center p-4 m-1 ${style.shopCardsCard}`}>
           <img src={art.image} alt={art.title} width="200" />
           <h5>{art.title}</h5>
@@ -49,10 +60,12 @@ function Shop() {
         <button className={`my-2 ${style.gradientBtn}`}  onClick={() => addToCart(art)}>Add to cart</button>
           
         </div>
-      ))}
+      ))
+    )}
               </div>
 
         </div>
+    
     )
 }
 export default Shop
