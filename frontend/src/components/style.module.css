@@ -1,9 +1,32 @@
+ :root {
+  --bg: #F5F1EB;
+  --text-primary: #2E2A27;
+  --text-secondary: #6E6259;
+  --accent: #C8A97E;
+  --card-bg: #FFFFFF;
+  --border: #E8E2DA;
+}
+
+.dark {
+  --bg: #1E1E1E;
+  --text-primary: #F5F5F5;
+  --text-secondary: #B0B0B0;
+  --accent: #C8A97E;
+  --card-bg: #2A2A2A;
+  --border: #3A3A3A;
+}
  .containerDark{
-  background-color: #4e4c45;
-  color: #ede9dc;
+  background-color: #1E1E1E;
+  color: #F5F5F5;
  }
  .containerLight{
-background-color: #faf7de;
+background-color: #F5F1EB;
+ }
+ .containerLight p,.containerLight i{
+  color: #6E6259;
+ }
+  .containerDark p,.containerDark i{
+  color: #B0B0B0;
  }
  .containerDark a{
   color: #faf7de;

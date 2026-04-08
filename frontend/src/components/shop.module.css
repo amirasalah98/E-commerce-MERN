@@ -1,30 +1,36 @@
 .containerLight p, .containerLight li{
-    color: #7a7a73;
+    color: #6E6259;
 }
 .containerDark p, .containerDark li{
-    color: #faf7de;
+    color: #B0B0B0;
 }
 .containerLight .cartBox, .containerLight .totalBox{
-    background-color: #ffffffb6;
+    background-color: #FFFFFF;
      border-radius: 20px;
     border: 1px solid #7a7a7333;
     
 }
 .containerDark .cartBox, .containerDark .totalBox{
-    background-color: #a39f9369!important;
+    background-color: #2A2A2A!important;
     border-radius: 20px;
-    color: #faf7de;
+    color: #B0B0B0;
     
 }
 .containerLight button{
-background-color: rgb(255, 253, 240);
-color: #7A7A73;
-border: 1px solid #7A7A73;
+background-color: #C8A97E;
+color: #2E2A27;
+border: 1px solid #E8E2DA;
+}
+.containerDark button{
+background-color: #C8A97E;
+color: #F5F5F5;
+border: 1px solid #3A3A3A;
 }
 .quantityBox input, .quantityBox button{
-    background-color: #faf7de;
     border-radius: 20px;
-    border: 1px solid #7a7a7333;
+    background-color: #C8A97E;
+color: #F5F5F5;
+border: 1px solid #C8A97E;
 }
 .quantityBox button{
     border-radius: 50%;
@@ -42,7 +48,7 @@ border: 1px solid #7A7A73;
     text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #e8e6cf;
+    /* background-color: #e8e6cf; */
 }
 .btnX{
     background-color: transparent;
@@ -57,7 +63,7 @@ border: 1px solid #7A7A73;
 }
 .containerDark .btnX{
     color: #fff;
-    border:1px solid #fff;
+border: 1px solid #3A3A3A;
 }
 .btnX:hover{
     border: 1px solid #7a7a73;
@@ -69,7 +75,7 @@ border: 1px solid #7A7A73;
 border-radius: 20px;
 border-right: none;
 }
-.containerLight .gradientBtn{
+/* .containerLight .gradientBtn{
     color: #faf7de;
     border: none;
   background: #7A7A73;
@@ -80,7 +86,7 @@ background: linear-gradient(90deg, rgba(122, 122, 115, 1) 0%, rgba(163, 159, 147
   background: #7A7A73;
   background: linear-gradient(90deg,rgba(163, 159, 147, 1) 0%, rgba(122, 122, 115, 1) 50%);
 
-}
+} */
 
 @media (max-width: 768px){
     .totalBox,.cartsBox{
