@@ -37,8 +37,12 @@
 //     res.status(500).json({ message: "Failed to create order", error: error.message });
 //   }
 // };
-const Order = require("../models/Order");
+// const Order = require("../models/Order");
 const { validationResult } = require('express-validator');
+const fs = require('fs');
+const path = require('path');
+const ordersFilePath = path.join(__dirname, '../orders.json');
+const sendOrderEmail = require('../sendOrderEmail');
 
 exports.postOrder = async (req, res) => {
   const { name, email, phone, city, address } = req.body;
@@ -47,16 +51,24 @@ exports.postOrder = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
   try {
-    const newOrder = new Order({
-  customer: {
-    name,
-    email
-  },
-  phone,
-  city,
-  address
-});
-    await newOrder.save();
+
+const data = fs.readFileSync(ordersFilePath, 'utf-8');
+    const orders = JSON.parse(data);
+    const newOrder = {
+      id: Date.now(), // simple unique id
+      customer: {
+        name,
+        email
+      },
+      phone,
+      city,
+      address,
+      createdAt: new Date()
+    };
+      orders.push(newOrder);
+      fs.writeFileSync(ordersFilePath, JSON.stringify(orders, null, 2));
+      //  await sendOrderEmail(newOrder);
+
 
     res.status(201).json({ message: "Order created" });
   } catch (error) {

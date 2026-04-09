@@ -58,23 +58,20 @@ const [loggedInUser, setLoggedInUser] = useState(null);
             className={style.themeBtn} aria-label="Toggle theme">
               {darkMode? <BsSun />: <BsMoon  />}
             </Nav.Link>
-            {/* <Nav.Link as={Link} to="/admin/login" className={style.themeBtn}>
-              <BsPerson  />
-            </Nav.Link> */}
-            {loggedInUser ? (
+           
+            {/* {loggedInUser ? (
                 <div>
                     <p>Welcome {loggedInUser}</p>
                     <button onClick={handleLogout}>Logout</button>
                 </div>
             ) : (
                 <div>
-                    {/* <Signup />
-                    <Login setLoggedInUser={setLoggedInUser} /> */}
+                   
                     <Nav.Link as={Link} to="/login" className={style.themeBtn}>
               <BsPerson  />
             </Nav.Link>
                 </div>
-            )}
+            )} */}
           </Nav>
         </Navbar.Collapse>
       </Container>

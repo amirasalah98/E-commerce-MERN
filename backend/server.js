@@ -1,5 +1,5 @@
 const express= require("express")
-const mongoose= require("mongoose")
+// const mongoose= require("mongoose")
 const dotenv= require("dotenv")
 dotenv.config();
 const cors = require("cors");
@@ -22,18 +22,21 @@ app.use('/api', orderRoutes);
 app.get("/api/health", (req, res) => {
   res.status(200).send("OK");
 });
-async function startServer() {
-    try{
-        await mongoose.connect(process.env.mongoURI)
-        console.log("MongoDB connected successfully")
+// async function startServer() {
+//     try{
+//         await mongoose.connect(process.env.mongoURI)
+//         console.log("MongoDB connected successfully")
         
-        app.listen(PORT,()=>{
-             console.log(`Server is running on port ${PORT}`)
-        })
+//         app.listen(PORT,()=>{
+//              console.log(`Server is running on port ${PORT}`)
+//         })
         
-    }catch(error){
- console.error('MongoDB connection failed:',error)
- process.exit(1);
-    }
-}
-startServer()
+//     }catch(error){
+//  console.error('MongoDB connection failed:',error)
+//  process.exit(1);
+//     }
+// }
+// startServer()
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

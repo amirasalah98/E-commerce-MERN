@@ -51,8 +51,8 @@ const [error, setError] = useState(null);
   </div>
 ) : (
                     artworks.map((art) => (
-        <div key={art._id} className={`col-md-3 text-center p-4 m-1 ${style.shopCardsCard}`}>
-          <img src={art.image} alt={art.title} width="200" />
+        <div key={art.id} className={`col-md-3 text-center p-4 m-1 ${style.shopCardsCard}`}>
+          <img src={art.img} alt={art.title} width="200" />
           <h5>{art.title}</h5>
           <p>${art.price}</p>
           <p>{art.category}</p>

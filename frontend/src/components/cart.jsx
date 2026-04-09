@@ -23,21 +23,22 @@ function Cart(){
         < div className=" d-flex flex-column flex-md-row justify-content-between  align-items-start">
           <div className={`w-75 ${style.cartsBox}`}>
           {cartItems.map(item => (
-            <div className={` p-3 d-flex justify-content-between my-4 ${style.cartBox}`} key={item._id}>
+            <div className={` p-3 d-flex justify-content-between my-4 ${style.cartBox}`} key={item.id}>
               {/* <div>
                 <img src={item.image} alt="" />
               </div> */}
               <div>
               <h4>{item.title}</h4>
+              <img className="py-2" src={item.img} alt={item.title} height="200" />
               
               <div className={`d-flex ${style.quantityBox}`}>
-  <button onClick={() => increaseQuantity(item._id)}>+</button>
+  <button onClick={() => increaseQuantity(item.id)}>+</button>
   <input type="number" value={item.quantity} readOnly style={{ margin: "0 10px" }} />
-  <button onClick={() => decreaseQuantity(item._id)}>-</button>
+  <button onClick={() => decreaseQuantity(item.id)}>-</button>
 </div>
 </div>
 <div className="d-flex flex-column align-items-end">
-  <button className={`${style.btnX}`} onClick={() => removeFromCart(item._id)}>
+  <button className={`${style.btnX}`} onClick={() => removeFromCart(item.id)}>
                 X
               </button>
   <p>Price: ${item.price}</p>

@@ -28,8 +28,8 @@ function App() {
         <Route path='/cart' element={<Cart />}></Route>
         <Route path='/wishlist' element={<Wishlist />}></Route>
         <Route path='/about' element={<About />}></Route>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='/signup' element={<Signup />}></Route>
+        {/* <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<Signup />}></Route> */}
         <Route path='/checkout' element={<Checkout />}></Route>
         <Route path='/order-success' element={<OrderSuccess />}></Route>
       </Routes>
