@@ -53,7 +53,7 @@ const [error, setError] = useState(null);
                     artworks.map((art) => (
         <div key={art.id} className={`col-md-3 text-center p-4 m-1 ${style.shopCardsCard}`}>
           <img src={art.img} alt={art.title} width="200" />
-          <h5>{art.title}</h5>
+          <h5 className='pt-3'>{art.title}</h5>
           <p>${art.price}</p>
           <p>{art.category}</p>
           <p>{art.size}</p>

@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "title": "Sunset Dream",
+    "title": "Golden Silence",
     "price": 2500,
-    "category": "Abstract",
+    "category": "Landscape",
     "size": "42x54 cm",
     "img": "https://res.cloudinary.com/do0eee789/image/upload/v1775772810/20260404_182446_xrysvn.jpg"
   },
@@ -11,15 +11,15 @@
     "id": 2,
     "title": "Ocean Whisper",
     "price": 4000,
-    "category": "Nature",
+    "category": "Landscape",
     "size": "46x59 cm",
     "img": "https://res.cloudinary.com/do0eee789/image/upload/v1775772810/20260404_184052_lc3nyr.jpg"
   },
   {
     "id": 3,
-    "title": "Golden Silence",
+    "title": "Sunset Dream",
     "price": 2500,
-    "category": "Minimal",
+    "category": "Landscape",
     "size": "42x54 cm",
     "img": "https://res.cloudinary.com/do0eee789/image/upload/v1775772806/20260404_183601_ahtlcw.jpg"
   }
