@@ -6,6 +6,7 @@ import { CartContext } from '../cartContext';
 
 function Shop() {
     const [artworks,setArtworks]=useState([])
+    console.log(artworks);
     const {darkMode}=useContext(DarkModeContext)
     const { addToCart } = useContext(CartContext);
     const [loading, setLoading] = useState(true);

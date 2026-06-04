@@ -10,10 +10,10 @@ useEffect(() => {
   localStorage.setItem("cart", JSON.stringify(cartItems));
 }, [cartItems]);
   const addToCart=(product)=>{
-    const existingItem= cartItems.find(item=>item._id===product._id)
+    const existingItem= cartItems.find(item=>item.id===product._d)
     if (existingItem){
         setCartItems(cartItems.map(item=>
-            item._id===product._id? 
+            item.id===product.id? 
             { ...item, quantity: item.quantity + 1 }:item
         ))
     } else {
@@ -22,7 +22,7 @@ useEffect(() => {
 }
 const increaseQuantity=(id)=>{
     setCartItems(cartItems.map(item=>
-        item._id===id
+        item.id===id
         ? { ...item, quantity: item.quantity + 1 }
       : item
     ))
@@ -30,13 +30,13 @@ const increaseQuantity=(id)=>{
 const decreaseQuantity=(id)=>{
 
     setCartItems(cartItems.map(item=>
-        item._id===id && item.quantity>0
+        item.id===id && item.quantity>0
         ? { ...item, quantity: item.quantity - 1 }
       : item
     ))
 }
 const removeFromCart = (id) => {
-    setCartItems(cartItems.filter(item => item._id !== id));
+    setCartItems(cartItems.filter(item => item.id !== id));
   };
      const clearCart = () => {
     setCartItems([]);

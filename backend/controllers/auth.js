@@ -2,7 +2,6 @@ const User= require('../models/User')
 const bcrypt= require('bcrypt')
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
-// const csurf = require('csurf');
 const dotenv= require("dotenv")
 dotenv.config();
 
@@ -12,22 +11,17 @@ exports.signupAuth = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ message: errors.array()[0].msg });
   }
-
   const { username, email, password } = req.body;
-
   try {
     // Check if user exists
     let user = await User.findOne({ email });
     if (user) return res.status(400).json({ message: 'Email already exists', type: 'email' });
-
     // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
     // Create user
     user = new User({ username, email, password: hashedPassword });
     await user.save();
-
     // Create JWT token
     const payload = { user: { id: user.id } };
     jwt.sign(payload, process.env.jwtSecret, { expiresIn: '1h' }, (err, token) => {
